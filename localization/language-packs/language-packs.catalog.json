@@ -1,0 +1,20 @@
+﻿[
+  {
+    "id": "fr-FR",
+    "name": "French (France)",
+    "baseLanguage": "fr",
+    "region": "FR",
+    "downloadUrl": "https://cdn/langpacks/fr-FR.json",
+    "version": "1.0.0",
+    "checksum": "SHA256:TODO"
+  },
+  {
+    "id": "de-DE",
+    "name": "German (Germany)",
+    "baseLanguage": "de",
+    "region": "DE",
+    "downloadUrl": "https://cdn/langpacks/de-DE.json",
+    "version": "1.0.0",
+    "checksum": "SHA256:TODO"
+  }
+]

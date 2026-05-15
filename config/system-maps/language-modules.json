@@ -1,0 +1,56 @@
+﻿[
+    {
+        "module":  "ErpBridge.Service",
+        "languages":  [
+                          "it",
+                          "en",
+                          "zh-Hans",
+                          "ru"
+                      ]
+    },
+    {
+        "module":  "HR.Service",
+        "languages":  [
+                          "it",
+                          "en",
+                          "zh-Hans",
+                          "ru"
+                      ]
+    },
+    {
+        "module":  "LoadPlanner3D.Service",
+        "languages":  [
+                          "it",
+                          "en",
+                          "zh-Hans",
+                          "ru"
+                      ]
+    },
+    {
+        "module":  "OcrDdt.Service",
+        "languages":  [
+                          "it",
+                          "en",
+                          "zh-Hans",
+                          "ru"
+                      ]
+    },
+    {
+        "module":  "ServiceRegistry.Service",
+        "languages":  [
+                          "it",
+                          "en",
+                          "zh-Hans",
+                          "ru"
+                      ]
+    },
+    {
+        "module":  "Warehouse.Service",
+        "languages":  [
+                          "it",
+                          "en",
+                          "zh-Hans",
+                          "ru"
+                      ]
+    }
+]

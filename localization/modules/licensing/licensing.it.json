@@ -1,0 +1,8 @@
+﻿{
+  "Licensing.Title": "License Management",
+  "Licensing.Status.Valid": "License valid",
+  "Licensing.Status.Invalid": "License invalid",
+  "Licensing.Status.Expired": "License expired",
+  "Licensing.Action.Activate": "Activate license",
+  "Licensing.Action.Deactivate": "Deactivate license"
+}

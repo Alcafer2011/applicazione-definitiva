@@ -1,0 +1,164 @@
+{
+  "theme": {
+    "name": "AI Enterprise OS - Neon Cyber Theme",
+    "version": "1.0.0",
+    "description": "Crystal-Neon Master Palette with Glassmorphism",
+    "colors": {
+      "palette": {
+        "bg": {
+          "void": "#02040a",
+          "crystal": "rgba(10, 20, 40, 0.4)",
+          "glass_heavy": "rgba(15, 23, 42, 0.7)",
+          "glass_light": "rgba(30, 50, 80, 0.3)"
+        },
+        "neon": {
+          "cyan": "#00f2ff",
+          "blue": "#38bdf8",
+          "purple": "#bc13fe",
+          "green": "#00ff41",
+          "pink": "#ff00ea",
+          "orange": "#ff8800"
+        },
+        "border": {
+          "crystal": "rgba(255, 255, 255, 0.15)",
+          "neon": "rgba(0, 242, 255, 0.5)",
+          "light": "rgba(255, 255, 255, 0.1)"
+        },
+        "text": {
+          "primary": "#ffffff",
+          "secondary": "#94a3b8",
+          "accent": "#00f2ff",
+          "muted": "rgba(255, 255, 255, 0.5)"
+        }
+      },
+      "semantic": {
+        "success": "#00ff41",
+        "error": "#ff00ea",
+        "warning": "#ff8800",
+        "info": "#00f2ff",
+        "neutral": "#94a3b8"
+      }
+    },
+    "fonts": {
+      "primary": "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
+      "tech": "'Orbitron', 'Courier New', monospace",
+      "mono": "'JetBrains Mono', 'Courier New', monospace"
+    },
+    "typography": {
+      "heading": {
+        "size": "2rem",
+        "weight": 900,
+        "family": "tech",
+        "letterSpacing": "4px",
+        "textTransform": "uppercase"
+      },
+      "subheading": {
+        "size": "1.2rem",
+        "weight": 700,
+        "family": "tech",
+        "letterSpacing": "2px"
+      },
+      "body": {
+        "size": "1rem",
+        "weight": 400,
+        "family": "primary"
+      },
+      "caption": {
+        "size": "0.75rem",
+        "weight": 500,
+        "family": "tech",
+        "letterSpacing": "1px",
+        "textTransform": "uppercase"
+      },
+      "code": {
+        "size": "0.9rem",
+        "family": "mono"
+      }
+    },
+    "shadows": {
+      "neon": "0 0 20px rgba(0, 242, 255, 0.3)",
+      "text": "0 0 10px rgba(0, 242, 255, 0.6)",
+      "deep": "0 0 50px rgba(0, 0, 0, 0.8)",
+      "inner": "inset 0 0 30px rgba(255, 255, 255, 0.05)",
+      "hover": "0 0 15px rgba(0, 242, 255, 0.5)"
+    },
+    "spacing": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "16px",
+      "lg": "24px",
+      "xl": "32px",
+      "2xl": "48px"
+    },
+    "borderRadius": {
+      "xs": "4px",
+      "sm": "8px",
+      "md": "12px",
+      "lg": "24px",
+      "full": "50%"
+    },
+    "animations": {
+      "duration": {
+        "fast": "0.3s",
+        "normal": "0.5s",
+        "slow": "0.8s"
+      },
+      "easing": {
+        "smooth": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "elastic": "cubic-bezier(0.175, 0.885, 0.32, 1.275)",
+        "ease_in": "ease-in",
+        "ease_out": "ease-out"
+      }
+    },
+    "layout": {
+      "sidebar_width": "280px",
+      "topbar_height": "90px",
+      "max_content_width": "1400px"
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+      "cyan_to_blue": "linear-gradient(90deg, #00f2ff 0%, #38bdf8 100%)",
+      "neon_glow": "linear-gradient(90deg, transparent, #00f2ff, transparent)",
+      "dark_void": "linear-gradient(180deg, #02040a 0%, #0f0f23 100%)"
+    },
+    "breakpoints": {
+      "mobile": "480px",
+      "tablet": "768px",
+      "desktop": "1024px",
+      "wide": "1280px",
+      "ultra": "1536px"
+    }
+  },
+  "lightMode": {
+    "colors": {
+      "bg": {
+        "primary": "#ffffff",
+        "secondary": "#fafafa",
+        "tertiary": "#f5f5f5"
+      },
+      "text": {
+        "primary": "rgba(0, 0, 0, 0.85)",
+        "secondary": "rgba(0, 0, 0, 0.45)",
+        "disabled": "rgba(0, 0, 0, 0.25)"
+      },
+      "border": {
+        "primary": "#d9d9d9",
+        "light": "#f0f0f0"
+      }
+    },
+    "gradients": {
+      "primary": "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+    }
+  },
+  "accessibility": {
+    "contrastRatio": "WCAG AA",
+    "focusIndicator": "2px solid #00f2ff",
+    "reducedMotion": true
+  },
+  "exports": {
+    "css": "theme.css",
+    "scss": "theme.scss",
+    "json": "theme-tokens.json",
+    "javascript": "theme.js"
+  }
+}

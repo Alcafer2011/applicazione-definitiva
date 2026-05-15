@@ -1,0 +1,10 @@
+﻿{
+  "Logistics.Title": "Logistics and Shipping",
+  "Logistics.Wizard.Start": "Start shipment configuration",
+  "Logistics.Question.DomesticOrInternational": "Domestic or international shipment",
+  "Logistics.Question.DestinationCountry": "Destination country",
+  "Logistics.Question.TransportMode": "Select transport mode",
+  "Logistics.Question.TruckType": "Select truck type",
+  "Logistics.Output.LoadPlan": "Load plan",
+  "Logistics.Output.DownloadInstructions": "Download warehouse instructions"
+}

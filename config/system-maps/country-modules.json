@@ -1,0 +1,24 @@
+﻿[
+    {
+        "countryCode":  "IT",
+        "enabledModules":  [
+                               "ErpBridge.Service",
+                               "HR.Service",
+                               "LoadPlanner3D.Service",
+                               "OcrDdt.Service",
+                               "ServiceRegistry.Service",
+                               "Warehouse.Service"
+                           ]
+    },
+    {
+        "countryCode":  "US",
+        "enabledModules":  [
+                               "ErpBridge.Service",
+                               "HR.Service",
+                               "LoadPlanner3D.Service",
+                               "OcrDdt.Service",
+                               "ServiceRegistry.Service",
+                               "Warehouse.Service"
+                           ]
+    }
+]

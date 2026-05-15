@@ -1,0 +1,20 @@
+﻿[
+  {
+    "countryCode": "IT",
+    "name": "Italy",
+    "defaultLanguage": "it-IT",
+    "vatStandardRate": 22,
+    "gdpr": true,
+    "currency": "EUR",
+    "timeZone": "Europe/Rome"
+  },
+  {
+    "countryCode": "US",
+    "name": "United States",
+    "defaultLanguage": "en-US",
+    "vatStandardRate": 0,
+    "gdpr": false,
+    "currency": "USD",
+    "timeZone": "America/New_York"
+  }
+]

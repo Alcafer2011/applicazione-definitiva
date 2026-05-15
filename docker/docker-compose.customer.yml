@@ -1,0 +1,28 @@
+﻿version: "3.9"
+
+services:
+  ai-enterprise-api:
+    image: your-registry/ai-enterprise-api:latest
+    container_name: ai-enterprise-api
+    restart: unless-stopped
+    env_file:
+      - ../config/secrets/.env
+    ports:
+      - "8080:8080"
+    networks:
+      - ai-enterprise-net
+
+  ai-enterprise-frontend:
+    image: your-registry/ai-enterprise-frontend:latest
+    container_name: ai-enterprise-frontend
+    restart: unless-stopped
+    environment:
+      - API_BASE_URL=http://ai-enterprise-api:8080
+    ports:
+      - "80:80"
+    networks:
+      - ai-enterprise-net
+
+networks:
+  ai-enterprise-net:
+    driver: bridge

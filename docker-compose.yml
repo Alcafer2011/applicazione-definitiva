@@ -1,0 +1,384 @@
+
+
+services:
+
+  backuprestore:
+    build:
+      context: ./BackupRestore.Service
+    container_name: bos-backuprestore
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.backuprestore.rule=Host(`localhost`) && PathPrefix(`/backup`)"
+      - "traefik.http.routers.backuprestore.entrypoints=websecure"
+      - "traefik.http.services.backuprestore.loadbalancer.server.port=8080"
+
+  adminconsole:
+    build:
+      context: ./AdminConsole.Service
+    container_name: bos-adminconsole
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.adminconsole.rule=Host(`localhost`) && PathPrefix(`/admin`)"
+      - "traefik.http.routers.adminconsole.entrypoints=websecure"
+      - "traefik.http.services.adminconsole.loadbalancer.server.port=8080"
+
+  analyticshub:
+    build:
+      context: ./AnalyticsHub.Service
+    container_name: bos-analyticshub
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.analyticshub.rule=Host(`localhost`) && PathPrefix(`/analytics`)"
+      - "traefik.http.routers.analyticshub.entrypoints=websecure"
+      - "traefik.http.services.analyticshub.loadbalancer.server.port=8080"
+
+  messagebus:
+    build:
+      context: ./Message.Service
+    container_name: bos-messagebus
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.messagebus.rule=Host(`localhost`) && PathPrefix(`/bus`)"
+      - "traefik.http.routers.messagebus.entrypoints=websecure"
+      - "traefik.http.services.messagebus.loadbalancer.server.port=8080"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: bos-rabbitmq
+    ports:
+      - "15672:15672"
+    networks:
+      - bos-net
+
+  scheduler:
+    build:
+      context: ./Scheduler.Service
+    container_name: bos-scheduler
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.scheduler.rule=Host(`localhost`) && PathPrefix(`/scheduler`)"
+      - "traefik.http.routers.scheduler.entrypoints=websecure"
+      - "traefik.http.services.scheduler.loadbalancer.server.port=8080"
+
+  apigateway:
+    build:
+      context: ./ApiGateway.Service
+    container_name: bos-apigateway
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.apigateway.rule=Host(`localhost`) && PathPrefix(`/`)"
+      - "traefik.http.routers.apigateway.entrypoints=websecure"
+      - "traefik.http.services.apigateway.loadbalancer.server.port=8080"
+
+  identity:
+    build:
+      context: ./Identity.Service
+    container_name: bos-identity
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.identity.rule=Host(`localhost`) && PathPrefix(`/identity`)"
+      - "traefik.http.routers.identity.entrypoints=websecure"
+      - "traefik.http.services.identity.loadbalancer.server.port=8080"
+
+  filestorage:
+    build:
+      context: ./FileStorage.Service
+    container_name: bos-filestorage
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.filestorage.rule=Host(`localhost`) && PathPrefix(`/filestorage`)"
+      - "traefik.http.routers.filestorage.entrypoints=websecure"
+      - "traefik.http.services.filestorage.loadbalancer.server.port=8080"
+
+  searchengine:
+    build:
+      context: ./SearchEngine.Service
+    container_name: bos-searchengine
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.searchengine.rule=Host(`localhost`) && PathPrefix(`/search`)"
+      - "traefik.http.routers.searchengine.entrypoints=websecure"
+      - "traefik.http.services.searchengine.loadbalancer.server.port=8080"
+
+  audit:
+    build:
+      context: ./Audit.Service
+    container_name: bos-audit
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.audit.rule=Host(`localhost`) && PathPrefix(`/audit`)"
+      - "traefik.http.routers.audit.entrypoints=websecure"
+      - "traefik.http.services.audit.loadbalancer.server.port=8080"
+
+  notificationcenter:
+    build:
+      context: ./NotificationCenter.Service
+    container_name: bos-notificationcenter
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.notificationcenter.rule=Host(`localhost`) && PathPrefix(`/notifications`)"
+      - "traefik.http.routers.notificationcenter.entrypoints=websecure"
+      - "traefik.http.services.notificationcenter.loadbalancer.server.port=8080"
+
+  statusmonitor:
+    build:
+      context: ./StatusMonitor.Service
+    container_name: bos-statusmonitor
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.statusmonitor.rule=Host(`localhost`) && PathPrefix(`/status`)"
+      - "traefik.http.routers.statusmonitor.entrypoints=websecure"
+      - "traefik.http.services.statusmonitor.loadbalancer.server.port=8080"
+
+  dashboard:
+    build:
+      context: ./Dashboard.Service
+    container_name: bos-dashboard
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`localhost`) && PathPrefix(`/dashboard`)"
+      - "traefik.http.routers.dashboard.entrypoints=websecure"
+      - "traefik.http.services.dashboard.loadbalancer.server.port=8080"
+
+  marketintelligence:
+    build:
+      context: ./MarketIntelligence.Service
+    container_name: bos-marketintelligence
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.marketintelligence.rule=Host(`localhost`) && PathPrefix(`/market`)"
+      - "traefik.http.routers.marketintelligence.entrypoints=websecure"
+      - "traefik.http.services.marketintelligence.loadbalancer.server.port=8080"
+
+  memorygraph:
+    build:
+      context: ./MemoryGraph.Service
+    container_name: bos-memorygraph
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.memorygraph.rule=Host(`localhost`) && PathPrefix(`/memorygraph`)"
+      - "traefik.http.routers.memorygraph.entrypoints=websecure"
+      - "traefik.http.services.memorygraph.loadbalancer.server.port=8080"
+
+  autohealing:
+    build:
+      context: ./AutoHealing.Service
+    container_name: bos-autohealing
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.autohealing.rule=Host(`localhost`) && PathPrefix(`/autohealing`)"
+      - "traefik.http.routers.autohealing.entrypoints=websecure"
+      - "traefik.http.services.autohealing.loadbalancer.server.port=8080"
+
+  multiai:
+    build:
+      context: ./MultiAI.Service
+    container_name: bos-multiai
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.multiai.rule=Host(`localhost`) && PathPrefix(`/multiai`)"
+      - "traefik.http.routers.multiai.entrypoints=websecure"
+      - "traefik.http.services.multiai.loadbalancer.server.port=8080"
+
+  bi:
+    build:
+      context: ./BI.Service
+    container_name: bos-bi
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.bi.rule=Host(`localhost`) && PathPrefix(`/bi`)"
+      - "traefik.http.routers.bi.entrypoints=websecure"
+      - "traefik.http.services.bi.loadbalancer.server.port=8080"
+
+  licensing:
+    build:
+      context: ./Licensing.Service
+    container_name: bos-licensing
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.licensing.rule=Host(`localhost`) && PathPrefix(`/licensing`)"
+      - "traefik.http.routers.licensing.entrypoints=websecure"
+      - "traefik.http.services.licensing.loadbalancer.server.port=8080"
+
+  workflow:
+    build:
+      context: ./Workflow.Service
+    container_name: bos-workflow
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.workflow.rule=Host(`localhost`) && PathPrefix(`/workflow`)"
+      - "traefik.http.routers.workflow.entrypoints=websecure"
+      - "traefik.http.services.workflow.loadbalancer.server.port=8080"
+
+  digitalbrain:
+    build:
+      context: ./DigitalBrain.Service
+    container_name: bos-digitalbrain
+    ports:
+      - "5001:8080"
+    networks:
+      - bos-net
+
+  orchestrator:
+    build:
+      context: ./Orchestrator.Service
+    container_name: bos-orchestrator
+    ports:
+      - "5000:8080"
+    depends_on:
+      - digitalbrain
+    networks:
+      - bos-net
+
+  crm:
+    build:
+      context: ./CRM.Service
+    container_name: bos-crm
+    networks:
+      - bos-net
+
+  governance:
+    build:
+      context: ./Governance.Service
+    container_name: bos-governance
+    networks:
+      - bos-net
+
+  twin:
+    build:
+      context: ./Twin.Service
+    container_name: bos-twin
+    networks:
+      - bos-net
+
+  mongo:
+    image: mongo:7
+    container_name: bos-mongo
+    restart: unless-stopped
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - bos-net
+
+  ui-react:
+    build:
+      context: ./frontend-react
+      dockerfile: Dockerfile
+    container_name: bos-ui-react
+    restart: unless-stopped
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ui-react.rule=Host(`localhost`)"
+      - "traefik.http.routers.ui-react.entrypoints=web"
+      - "traefik.http.services.ui-react.loadbalancer.server.port=80"
+
+  traefik:
+    image: traefik:v3.1
+    container_name: bos-traefik
+    command:
+      - "--api.dashboard=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/traefik.yml
+      - ./certs:/certs
+    networks:
+      - bos-net
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: bos-loki
+    command: -config.file=/etc/loki/loki-config.yml
+    volumes:
+      - ./monitoring/loki-config.yml:/etc/loki/loki-config.yml
+      - loki_data:/loki
+    networks:
+      - bos-net
+
+  promtail:
+    image: grafana/promtail:2.9.0
+    container_name: bos-promtail
+    command: -config.file=/etc/promtail/promtail-config.yml
+    volumes:
+      - ./monitoring/promtail-config.yml:/etc/promtail/promtail-config.yml
+      - /var/lib/docker/containers:/var/log/containers:ro
+    networks:
+      - bos-net
+
+  grafana:
+    image: grafana/grafana:10.4.0
+    container_name: bos-grafana
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning
+    ports:
+      - "3000:3000"
+    networks:
+      - bos-net
+
+networks:
+  bos-net:
+    driver: bridge
+
+volumes:
+  mongo_data:
+  loki_data:
+  grafana_data:

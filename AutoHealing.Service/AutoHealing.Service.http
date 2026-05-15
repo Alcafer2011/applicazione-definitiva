@@ -1,0 +1,6 @@
+@AutoHealing.Service_HostAddress = http://localhost:5277
+
+GET {{AutoHealing.Service_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

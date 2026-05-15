@@ -1,0 +1,204 @@
+AI ENTERPRISE OS - ARCHITECTURE DIAGRAM
+========================================
+
+┌────────────────────────────────────────────────────────────────────────────────┐
+│                           CLIENTS & FRONTENDS                                   │
+├────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                  │
+│   ┌──────────────────────┐   ┌──────────────────────┐   ┌──────────────────────┐
+│   │   frontend-react     │   │     frontend         │   │ frontend-loadplanner3d│
+│   │   (Web App - Port 80)│   │   (Generic UI)       │   │  (3D Visualization)  │
+│   └──────────────────────┘   └──────────────────────┘   └──────────────────────┘
+│              │                        │                          │
+│              └────────────────────────┼──────────────────────────┘
+│                                       │
+│                              ┌────────▼────────┐
+│                              │  Traefik v3.1   │
+│                              │  (Load Balancer)│
+│                              │ Ports: 80/443   │
+│                              └────────┬────────┘
+└───────────────────────────────────────┼──────────────────────────────────────────┘
+                                        │
+        ┌───────────────────────────────┼───────────────────────────────┐
+        │                               │                               │
+        ▼                               ▼                               ▼
+┌──────────────────────────┐   ┌──────────────────────────┐   ┌──────────────────────────┐
+│   API GATEWAY LAYER      │   │  AUTHENTICATION LAYER    │   │  MONITORING STACK        │
+├──────────────────────────┤   ├──────────────────────────┤   ├──────────────────────────┤
+│ • ApiGateway.Service     │   │ • Identity.Service       │   │ • Grafana (Port 3000)    │
+│ • StatusMonitor.Service  │   │ • Audit.Service          │   │ • Loki (Logs)            │
+│ • ServiceRegistry.Service│   │ • Governance.Service     │   │ • Promtail (Log Shipper) │
+└──────────────────────────┘   └──────────────────────────┘   └──────────────────────────┘
+        │                               │                               │
+        └───────────────────┬───────────┴──────────────┬─────────────────┘
+                            │                          │
+        ┌───────────────────┼──────────────────────────┴────────────────────┐
+        │                   │                                               │
+        ▼                   ▼                                               ▼
+┌──────────────────────────────────────────────────┐              ┌──────────────────────┐
+│     AI & MACHINE LEARNING LAYER (Core)           │              │  MESSAGE BUS LAYER   │
+├──────────────────────────────────────────────────┤              ├──────────────────────┤
+│ • DigitalBrain.Service (AI Engine)              │              │ • Message.Service    │
+│ • MultiAI.Service (Multi-model Orchestration)   │──────┬───────┤ • RabbitMQ (Broker)  │
+│ • OcrDdt.Service (OCR & Document Processing)    │      │       │ • Notification       │
+│ • Orchestrator.Service (Workflow Orchestration) │      │       │   Center.Service     │
+│   (depends on DigitalBrain)                      │      │       └──────────────────────┘
+└──────────────────────────────────────────────────┘      │
+        │                                                  │
+        └──────────────────────────────────────────────────┘
+                            │
+    ┌───────────────────────┼───────────────────────┐
+    │                       │                       │
+    ▼                       ▼                       ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│              BUSINESS SERVICES LAYER (Horizontal)                             │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                                │
+│ Administration    │ Business Ops      │ Intelligence      │ Workforce         │
+│ ──────────────    │ ───────────────    │ ────────────────  │ ─────────────     │
+│ • AdminConsole    │ • CRM.Service      │ • AnalyticsHub    │ • HR.Service      │
+│                   │ • ErpBridge        │ • BI.Service      │                   │
+│                   │ • Warehouse        │ • MarketIntel     │ Data & Knowledge  │
+│                   │ • Logistics        │ • MemoryGraph     │ ──────────────    │
+│                   │                    │   (Knowledge Base)│ • FileStorage     │
+│                   │ Operations         │                   │ • SearchEngine    │
+│                   │ ──────────────     │ Planning & Design │ • BackupRestore   │
+│ Automation        │ • Scheduler        │ ──────────────    │                   │
+│ ──────────────    │ • AutoHealing      │ • LoadPlanner3D   │ Licensing         │
+│ • Workflow        │ • Dashboard        │   (3D Planning)   │ ──────────────    │
+│                   │                    │ • Twin            │ • Licensing       │
+│                   │ Communications     │   (Digital Twin)  │   (module)        │
+│                   │ ──────────────     │                   │                   │
+│                   │ • NotificationCtr  │                   │                   │
+│                   │                    │                   │                   │
+└──────────────────────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                        PERSISTENCE LAYER                                       │
+├──────────────────────────────────────────────────────────────────────────────┤
+│                                                                                │
+│ • MongoDB (Document DB) - Primary Data Store                                 │
+│ • RabbitMQ (Message Queue) - Async Communication                             │
+│ • Named Volumes (Grafana, Loki) - Metrics & Logs Storage                     │
+│                                                                                │
+└──────────────────────────────────────────────────────────────────────────────┘
+
+
+NETWORK TOPOLOGY
+================
+
+All services communicate via "bos-net" bridge network (Docker internal DNS).
+
+    Frontend Apps ──► Traefik (DNS: bos-traefik) ──► Services (all use bos-net)
+                           │
+                           ├──► MongoDB (bos-mongo)
+                           ├──► RabbitMQ (bos-rabbitmq)
+                           ├──► Loki (bos-loki)
+                           ├──► Promtail (bos-promtail)
+                           └──► Grafana (bos-grafana)
+
+
+SERVICE DEPENDENCIES
+====================
+
+Critical Path:
+  ApiGateway → Identity.Service → Audit.Service
+            → Governance.Service
+            → Message.Service → RabbitMQ
+
+AI Pipeline:
+  Orchestrator → DigitalBrain.Service (port 5001)
+  DigitalBrain → MultiAI.Service
+              → OcrDdt.Service
+
+Data Pipeline:
+  AnalyticsHub → SearchEngine.Service
+              → BI.Service
+              → MemoryGraph.Service
+
+
+CATEGORIES BREAKDOWN (33 Total Microservices)
+==============================================
+
+🤖 AI & ML (3 services)
+   - DigitalBrain.Service (core engine)
+   - MultiAI.Service (orchestration)
+   - OcrDdt.Service (vision/processing)
+
+📊 Analytics & BI (2 services)
+   - AnalyticsHub.Service
+   - BI.Service
+
+🏢 Business Operations (4 services)
+   - CRM.Service
+   - ErpBridge.Service
+   - Warehouse.Service
+   - logistics
+
+🔐 Security (3 services)
+   - Identity.Service
+   - Audit.Service
+   - Governance.Service
+
+🔄 Orchestration & Workflow (2 services)
+   - Orchestrator.Service
+   - Workflow.Service
+
+📢 Messaging & Communication (2 services)
+   - Message.Service
+   - NotificationCenter.Service
+
+💾 Data Management (3 services)
+   - BackupRestore.Service
+   - FileStorage.Service
+   - MemoryGraph.Service
+
+🎛️ Admin & Monitoring (3 services)
+   - AdminConsole.Service
+   - StatusMonitor.Service
+   - Dashboard.Service
+
+🔧 DevOps & Automation (2 services)
+   - AutoHealing.Service
+   - Scheduler.Service
+
+🌐 Integration & Discovery (3 services)
+   - ApiGateway.Service
+   - SearchEngine.Service
+   - ServiceRegistry.Service
+
+👥 Human Resources (1 service)
+   - HR.Service
+
+📦 Planning & Visualization (1 service)
+   - LoadPlanner3D.Service
+
+🌍 Business Intelligence (1 service)
+   - MarketIntelligence.Service
+
+🔗 Digital Twin & IoT (1 service)
+   - Twin.Service
+
+📜 Licensing (2 services/modules)
+   - Licensing.Service
+   - licensing (module)
+
+🖇️ License Management (1 service)
+   - licensing
+
+
+DEPLOYMENT READINESS
+====================
+
+✓ All 33 services dockerized (Dockerfile present)
+✓ Docker Compose orchestration configured
+✓ Traefik routing rules defined for all exposed services
+✓ MongoDB persistence layer ready
+✓ RabbitMQ async messaging configured
+✓ Monitoring stack (Grafana + Loki + Promtail) integrated
+✓ 3 separate frontends for different use cases
+✓ Configuration files versioned
+✓ Ready for Kubernetes deployment (requires K8s manifests)
+
+Enterprise-Grade Microservices Platform: COMPLETE ✓

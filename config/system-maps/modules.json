@@ -1,0 +1,32 @@
+﻿[
+    {
+        "moduleName":  "ErpBridge.Service",
+        "code":  "ERPBRIDGE",
+        "defaultEnabled":  true
+    },
+    {
+        "moduleName":  "HR.Service",
+        "code":  "HR",
+        "defaultEnabled":  true
+    },
+    {
+        "moduleName":  "LoadPlanner3D.Service",
+        "code":  "LOADPLANNER3D",
+        "defaultEnabled":  true
+    },
+    {
+        "moduleName":  "OcrDdt.Service",
+        "code":  "OCRDDT",
+        "defaultEnabled":  true
+    },
+    {
+        "moduleName":  "ServiceRegistry.Service",
+        "code":  "SERVICEREGISTRY",
+        "defaultEnabled":  true
+    },
+    {
+        "moduleName":  "Warehouse.Service",
+        "code":  "WAREHOUSE",
+        "defaultEnabled":  true
+    }
+]
