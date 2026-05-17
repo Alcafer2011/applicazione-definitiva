@@ -10,4 +10,4 @@ RUN dotnet publish "Warehouse.Service.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=build /app/publish .
-ENTRYPOINT [""dotnet"", ""Warehouse.Service.dll""]
+ENTRYPOINT ["dotnet", "Warehouse.Service.dll"]

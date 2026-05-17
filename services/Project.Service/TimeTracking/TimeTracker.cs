@@ -1,4 +1,6 @@
 namespace AIEnterpriseOS.Project.Service.TimeTracking;
+using AIEnterpriseOS.Project.Service.Models;
+
 
 public interface ITimeTracker
 {

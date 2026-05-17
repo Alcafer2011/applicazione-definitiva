@@ -4,20 +4,20 @@ namespace AIEnterpriseOS.Manufacturing.Service.Routing;
 
 public interface IRoutingEngine
 {
-    Routing Create(Routing routing);
-    Routing? Get(string id);
+    AIEnterpriseOS.Manufacturing.Service.Models.Routing Create(AIEnterpriseOS.Manufacturing.Service.Models.Routing routing);
+    AIEnterpriseOS.Manufacturing.Service.Models.Routing? Get(string id);
 }
 
 public class InMemoryRoutingEngine : IRoutingEngine
 {
-    private readonly List<Routing> _routes = new();
+    private readonly List<AIEnterpriseOS.Manufacturing.Service.Models.Routing> _routes = new();
 
-    public Routing Create(Routing routing)
+    public AIEnterpriseOS.Manufacturing.Service.Models.Routing Create(AIEnterpriseOS.Manufacturing.Service.Models.Routing routing)
     {
         _routes.Add(routing);
         return routing;
     }
 
-    public Routing? Get(string id)
+    public AIEnterpriseOS.Manufacturing.Service.Models.Routing? Get(string id)
         => _routes.FirstOrDefault(x => x.Id == id);
 }

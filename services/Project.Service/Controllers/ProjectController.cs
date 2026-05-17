@@ -48,7 +48,7 @@ public class ProjectController : ControllerBase
     }
 
     [HttpPost("task/{taskId}/status/{status}")]
-    public IActionResult UpdateTaskStatus(string taskId, TaskStatus status)
+    public IActionResult UpdateTaskStatus(string taskId, ProjectTaskStatus status)
     {
         var t = _engine.UpdateTaskStatus(taskId, status);
         if (t is null) return NotFound();

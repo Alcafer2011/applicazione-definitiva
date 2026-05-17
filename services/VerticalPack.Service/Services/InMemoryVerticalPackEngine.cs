@@ -4,15 +4,15 @@ namespace AIEnterpriseOS.VerticalPack.Service.Services;
 
 public interface IVerticalPackEngine
 {
-    IEnumerable<VerticalPack> GetAll();
-    VerticalPack? Get(string code);
+    IEnumerable<AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack> GetAll();
+    AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack? Get(string code);
 }
 
 public class InMemoryVerticalPackEngine : IVerticalPackEngine
 {
-    private readonly List<VerticalPack> _packs = new()
+    private readonly List<AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack> _packs = new()
     {
-        new VerticalPack
+        new AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack
         {
             Code = "ARTIGIANO",
             Name = "Artigiano",
@@ -21,7 +21,7 @@ public class InMemoryVerticalPackEngine : IVerticalPackEngine
             DefaultDashboards = new() { "sales_overview", "cashflow" },
             AiPrompts = new() { "generate_quote", "suggest_price" }
         },
-        new VerticalPack
+        new AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack
         {
             Code = "EDILIZIA",
             Name = "Edilizia",
@@ -32,8 +32,8 @@ public class InMemoryVerticalPackEngine : IVerticalPackEngine
         }
     };
 
-    public IEnumerable<VerticalPack> GetAll() => _packs;
+    public IEnumerable<AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack> GetAll() => _packs;
 
-    public VerticalPack? Get(string code)
+    public AIEnterpriseOS.VerticalPack.Service.Models.VerticalPack? Get(string code)
         => _packs.FirstOrDefault(x => x.Code.Equals(code, StringComparison.OrdinalIgnoreCase));
 }

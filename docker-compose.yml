@@ -1,5 +1,4 @@
 
-
 services:
 
   backuprestore:
@@ -32,8 +31,6 @@ services:
     build:
       context: ./AnalyticsHub.Service
     container_name: bos-analyticshub
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - bos-net
     labels:
@@ -198,8 +195,6 @@ services:
     build:
       context: ./AutoHealing.Service
     container_name: bos-autohealing
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - bos-net
     labels:
@@ -297,6 +292,115 @@ services:
     networks:
       - bos-net
 
+  aimemory:
+    build:
+      context: ./services/AIMemory.Service
+    container_name: bos-aimemory
+    networks:
+      - bos-net
+  actionai:
+    build:
+      context: ./services/ActionAI.Service
+    container_name: bos-actionai
+    networks:
+      - bos-net
+  customerhub:
+    build:
+      context: ./services/CustomerHub.Service
+    container_name: bos-customerhub
+    networks:
+      - bos-net
+  documentai:
+    build:
+      context: ./services/DocumentAI.Service
+    container_name: bos-documentai
+    networks:
+      - bos-net
+  erpbridge:
+    build:
+      context: ./services/ErpBridge.Service
+    container_name: bos-erpbridge
+    networks:
+      - bos-net
+  finance:
+    build:
+      context: ./services/Finance.Service
+    container_name: bos-finance
+    networks:
+      - bos-net
+  hr:
+    build:
+      context: ./services/HR.Service
+    container_name: bos-hr
+    networks:
+      - bos-net
+  integrationhub:
+    build:
+      context: ./services/IntegrationHub.Service
+    container_name: bos-integrationhub
+    networks:
+      - bos-net
+  loadplanner3d:
+    build:
+      context: ./services/LoadPlanner3D.Service
+    container_name: bos-loadplanner3d
+    networks:
+      - bos-net
+  manufacturing:
+    build:
+      context: ./services/Manufacturing.Service
+    container_name: bos-manufacturing
+    networks:
+      - bos-net
+  onboarding:
+    build:
+      context: ./services/Onboarding.Service
+    container_name: bos-onboarding
+    networks:
+      - bos-net
+  project:
+    build:
+      context: ./services/Project.Service
+    container_name: bos-project
+    networks:
+      - bos-net
+  scenariosimulator:
+    build:
+      context: ./services/ScenarioSimulator.Service
+    container_name: bos-scenariosimulator
+    networks:
+      - bos-net
+  serviceregistry:
+    build:
+      context: ./services/ServiceRegistry.Service
+    container_name: bos-serviceregistry
+    networks:
+      - bos-net
+  tenant:
+    build:
+      context: ./services/Tenant.Service
+    container_name: bos-tenant
+    networks:
+      - bos-net
+  verticalpack:
+    build:
+      context: ./services/VerticalPack.Service
+    container_name: bos-verticalpack
+    networks:
+      - bos-net
+  warehouse:
+    build:
+      context: ./services/Warehouse.Service
+    container_name: bos-warehouse
+    networks:
+      - bos-net
+  search:
+    build:
+      context: ./services/Search.Service
+    container_name: bos-search
+    networks:
+      - bos-net
+
   mongo:
     image: mongo:7
     container_name: bos-mongo
@@ -320,8 +424,36 @@ services:
       - "traefik.http.routers.ui-react.entrypoints=web"
       - "traefik.http.services.ui-react.loadbalancer.server.port=80"
 
+  ui-legacy:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: bos-ui-legacy
+    restart: unless-stopped
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ui-legacy.rule=Host(`localhost`) && PathPrefix(`/legacy`)"
+      - "traefik.http.routers.ui-legacy.entrypoints=web"
+      - "traefik.http.services.ui-legacy.loadbalancer.server.port=80"
+
+  ui-loadplanner3d:
+    build:
+      context: ./frontend-loadplanner3d
+      dockerfile: Dockerfile
+    container_name: bos-ui-loadplanner3d
+    restart: unless-stopped
+    networks:
+      - bos-net
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.ui-loadplanner3d.rule=Host(`localhost`) && PathPrefix(`/loadplanner`)"
+      - "traefik.http.routers.ui-loadplanner3d.entrypoints=web"
+      - "traefik.http.services.ui-loadplanner3d.loadbalancer.server.port=80"
+
   traefik:
-    image: traefik:v3.1
+    image: traefik:v2.10
     container_name: bos-traefik
     command:
       - "--api.dashboard=true"
@@ -330,13 +462,13 @@ services:
       - "--entrypoints.web.address=:80"
       - "--entrypoints.websecure.address=:443"
     ports:
-      - "80:80"
+      - "8080:80"
       - "443:443"
       - "8081:8080"
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - ./traefik.yml:/traefik.yml
       - ./certs:/certs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - bos-net
 
@@ -356,7 +488,6 @@ services:
     command: -config.file=/etc/promtail/promtail-config.yml
     volumes:
       - ./monitoring/promtail-config.yml:/etc/promtail/promtail-config.yml
-      - /var/lib/docker/containers:/var/log/containers:ro
     networks:
       - bos-net
 

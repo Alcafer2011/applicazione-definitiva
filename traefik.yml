@@ -14,4 +14,4 @@ api:
 tls:
   certificates:
     - certFile: "/certs/localhost.crt"
-      keyFile: "/certs/localhost.pfx"
+      keyFile: "/certs/localhost.key"

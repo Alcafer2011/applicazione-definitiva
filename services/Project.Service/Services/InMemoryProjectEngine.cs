@@ -10,7 +10,7 @@ public interface IProjectEngine
 
     ProjectTask AddTask(ProjectTask task);
     IEnumerable<ProjectTask> GetTasks(string projectId);
-    ProjectTask? UpdateTaskStatus(string taskId, TaskStatus status);
+    ProjectTask? UpdateTaskStatus(string taskId, ProjectTaskStatus status);
 }
 
 public class InMemoryProjectEngine : IProjectEngine
@@ -44,7 +44,7 @@ public class InMemoryProjectEngine : IProjectEngine
     public IEnumerable<ProjectTask> GetTasks(string projectId)
         => _tasks.Where(x => x.ProjectId == projectId);
 
-    public ProjectTask? UpdateTaskStatus(string taskId, TaskStatus status)
+    public ProjectTask? UpdateTaskStatus(string taskId, ProjectTaskStatus status)
     {
         var task = _tasks.FirstOrDefault(x => x.Id == taskId);
         if (task != null)

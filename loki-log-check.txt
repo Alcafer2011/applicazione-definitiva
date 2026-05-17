@@ -1,0 +1,100 @@
+bos-loki  | 	/src/loki/pkg/loki/loki.go:461
+bos-loki  | main.main
+bos-loki  | 	/src/loki/cmd/loki/main.go:110
+bos-loki  | runtime.main
+bos-loki  | 	/usr/local/go/src/runtime/proc.go:250
+bos-loki  | runtime.goexit
+bos-loki  | 	/usr/local/go/src/runtime/asm_amd64.s:1598
+bos-loki  | level=warn ts=2026-05-17T11:51:12.731265014Z caller=loki.go:288 msg="global timeout not configured, using default engine timeout (\"5m0s\"). This behavior will change in the next major to always use the default global timeout (\"5m\")."
+bos-loki  | level=info ts=2026-05-17T11:51:12.738206623Z caller=main.go:108 msg="Starting Loki" version="(version=2.9.0, branch=HEAD, revision=2feb64f69)"
+bos-loki  | level=info ts=2026-05-17T11:51:12.738458206Z caller=modules.go:932 msg="Ruler storage is not configured; ruler will not be started."
+bos-loki  | level=info ts=2026-05-17T11:51:12.741255192Z caller=server.go:322 http=[::]:3100 grpc=[::]:9095 msg="server listening on addresses"
+bos-loki  | level=info ts=2026-05-17T11:51:12.746335108Z caller=modules.go:1106 msg="Not using object storage index, not starting compactor"
+bos-loki  | level=warn ts=2026-05-17T11:51:12.747868085Z caller=cache.go:127 msg="fifocache config is deprecated. use embedded-cache instead"
+bos-loki  | level=warn ts=2026-05-17T11:51:12.748067813Z caller=experimental.go:20 msg="experimental feature in use" feature="In-memory (FIFO) cache - chunksembedded-cache"
+bos-loki  | level=error ts=2026-05-17T11:51:12.750553168Z caller=log.go:230 msg="error running loki" err="Unrecognized storage client filesystem, choose one of: boltdb-shipper, tsdb\nerror creating index client\ngithub.com/grafana/loki/pkg/storage.(*store).storeForPeriod\n\t/src/loki/pkg/storage/store.go:295\ngithub.com/grafana/loki/pkg/storage.(*store).init\n\t/src/loki/pkg/storage/store.go:177\ngithub.com/grafana/loki/pkg/storage.NewStore\n\t/src/loki/pkg/storage/store.go:155\ngithub.com/grafana/loki/pkg/loki.(*Loki).initStore\n\t/src/loki/pkg/loki/modules.go:689\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:136\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:461\nmain.main\n\t/src/loki/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598\nerror initialising module: store\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:138\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:461\nmain.main\n\t/src/loki/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598"
+bos-loki  | Unrecognized storage client filesystem, choose one of: boltdb-shipper, tsdb
+bos-loki  | error creating index client
+bos-loki  | github.com/grafana/loki/pkg/storage.(*store).storeForPeriod
+bos-loki  | 	/src/loki/pkg/storage/store.go:295
+bos-loki  | github.com/grafana/loki/pkg/storage.(*store).init
+bos-loki  | 	/src/loki/pkg/storage/store.go:177
+bos-loki  | github.com/grafana/loki/pkg/storage.NewStore
+bos-loki  | 	/src/loki/pkg/storage/store.go:155
+bos-loki  | github.com/grafana/loki/pkg/loki.(*Loki).initStore
+bos-loki  | 	/src/loki/pkg/loki/modules.go:689
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).initModule
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:136
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).InitModuleServices
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108
+bos-loki  | github.com/grafana/loki/pkg/loki.(*Loki).Run
+bos-loki  | 	/src/loki/pkg/loki/loki.go:461
+bos-loki  | main.main
+bos-loki  | 	/src/loki/cmd/loki/main.go:110
+bos-loki  | runtime.main
+bos-loki  | 	/usr/local/go/src/runtime/proc.go:250
+bos-loki  | runtime.goexit
+bos-loki  | 	/usr/local/go/src/runtime/asm_amd64.s:1598
+bos-loki  | error initialising module: store
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).initModule
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:138
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).InitModuleServices
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108
+bos-loki  | github.com/grafana/loki/pkg/loki.(*Loki).Run
+bos-loki  | 	/src/loki/pkg/loki/loki.go:461
+bos-loki  | main.main
+bos-loki  | 	/src/loki/cmd/loki/main.go:110
+bos-loki  | runtime.main
+bos-loki  | 	/usr/local/go/src/runtime/proc.go:250
+bos-loki  | runtime.goexit
+bos-loki  | 	/usr/local/go/src/runtime/asm_amd64.s:1598
+bos-loki  | level=warn ts=2026-05-17T11:59:13.618484047Z caller=loki.go:288 msg="global timeout not configured, using default engine timeout (\"5m0s\"). This behavior will change in the next major to always use the default global timeout (\"5m\")."
+bos-loki  | level=info ts=2026-05-17T11:59:13.62275795Z caller=main.go:108 msg="Starting Loki" version="(version=2.9.0, branch=HEAD, revision=2feb64f69)"
+bos-loki  | level=info ts=2026-05-17T11:59:13.62312822Z caller=modules.go:932 msg="Ruler storage is not configured; ruler will not be started."
+bos-loki  | level=info ts=2026-05-17T11:59:13.624010111Z caller=server.go:322 http=[::]:3100 grpc=[::]:9095 msg="server listening on addresses"
+bos-loki  | level=warn ts=2026-05-17T11:59:13.625618148Z caller=cache.go:127 msg="fifocache config is deprecated. use embedded-cache instead"
+bos-loki  | level=warn ts=2026-05-17T11:59:13.625662532Z caller=experimental.go:20 msg="experimental feature in use" feature="In-memory (FIFO) cache - chunksembedded-cache"
+bos-loki  | level=error ts=2026-05-17T11:59:13.626175752Z caller=log.go:230 msg="error running loki" err="Unrecognized storage client filesystem, choose one of: boltdb-shipper, tsdb\nerror creating index client\ngithub.com/grafana/loki/pkg/storage.(*store).storeForPeriod\n\t/src/loki/pkg/storage/store.go:295\ngithub.com/grafana/loki/pkg/storage.(*store).init\n\t/src/loki/pkg/storage/store.go:177\ngithub.com/grafana/loki/pkg/storage.NewStore\n\t/src/loki/pkg/storage/store.go:155\ngithub.com/grafana/loki/pkg/loki.(*Loki).initStore\n\t/src/loki/pkg/loki/modules.go:689\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:136\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:461\nmain.main\n\t/src/loki/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598\nerror initialising module: store\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:138\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:461\nmain.main\n\t/src/loki/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598"
+bos-loki  | mkdir : no such file or directory
+bos-loki  | error creating index client
+bos-loki  | github.com/grafana/loki/pkg/storage.(*store).storeForPeriod
+bos-loki  | 	/src/loki/pkg/storage/store.go:295
+bos-loki  | github.com/grafana/loki/pkg/storage.(*store).init
+bos-loki  | 	/src/loki/pkg/storage/store.go:177
+bos-loki  | github.com/grafana/loki/pkg/storage.NewStore
+bos-loki  | 	/src/loki/pkg/storage/store.go:155
+bos-loki  | github.com/grafana/loki/pkg/loki.(*Loki).initStore
+bos-loki  | 	/src/loki/pkg/loki/modules.go:689
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).initModule
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:136
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).InitModuleServices
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108
+bos-loki  | github.com/grafana/loki/pkg/loki.(*Loki).Run
+bos-loki  | 	/src/loki/pkg/loki/loki.go:461
+bos-loki  | main.main
+bos-loki  | 	/src/loki/cmd/loki/main.go:110
+bos-loki  | runtime.main
+bos-loki  | 	/usr/local/go/src/runtime/proc.go:250
+bos-loki  | runtime.goexit
+bos-loki  | 	/usr/local/go/src/runtime/asm_amd64.s:1598
+bos-loki  | error initialising module: store
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).initModule
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:138
+bos-loki  | github.com/grafana/dskit/modules.(*Manager).InitModuleServices
+bos-loki  | 	/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108
+bos-loki  | github.com/grafana/loki/pkg/loki.(*Loki).Run
+bos-loki  | 	/src/loki/pkg/loki/loki.go:461
+bos-loki  | main.main
+bos-loki  | 	/src/loki/cmd/loki/main.go:110
+bos-loki  | runtime.main
+bos-loki  | 	/usr/local/go/src/runtime/proc.go:250
+bos-loki  | runtime.goexit
+bos-loki  | 	/usr/local/go/src/runtime/asm_amd64.s:1598
+bos-loki  | level=warn ts=2026-05-17T11:59:38.660208724Z caller=loki.go:288 msg="global timeout not configured, using default engine timeout (\"5m0s\"). This behavior will change in the next major to always use the default global timeout (\"5m\")."
+bos-loki  | level=info ts=2026-05-17T11:59:38.662037228Z caller=main.go:108 msg="Starting Loki" version="(version=2.9.0, branch=HEAD, revision=2feb64f69)"
+bos-loki  | level=info ts=2026-05-17T11:59:38.66209765Z caller=modules.go:932 msg="Ruler storage is not configured; ruler will not be started."
+bos-loki  | level=info ts=2026-05-17T11:59:38.664576972Z caller=server.go:322 http=[::]:3100 grpc=[::]:9095 msg="server listening on addresses"
+bos-loki  | level=warn ts=2026-05-17T11:59:38.667074129Z caller=cache.go:127 msg="fifocache config is deprecated. use embedded-cache instead"
+bos-loki  | level=warn ts=2026-05-17T11:59:38.667170224Z caller=experimental.go:20 msg="experimental feature in use" feature="In-memory (FIFO) cache - chunksembedded-cache"
+bos-loki  | level=info ts=2026-05-17T11:59:38.66828448Z caller=table_manager.go:136 index-store=boltdb-shipper-2020-10-24 msg="uploading tables"
+bos-loki  | level=error ts=2026-05-17T11:59:38.668413442Z caller=log.go:230 msg="error running loki" err="mkdir : no such file or directory\nerror creating index client\ngithub.com/grafana/loki/pkg/storage.(*store).storeForPeriod\n\t/src/loki/pkg/storage/store.go:295\ngithub.com/grafana/loki/pkg/storage.(*store).init\n\t/src/loki/pkg/storage/store.go:177\ngithub.com/grafana/loki/pkg/storage.NewStore\n\t/src/loki/pkg/storage/store.go:155\ngithub.com/grafana/loki/pkg/loki.(*Loki).initStore\n\t/src/loki/pkg/loki/modules.go:689\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:136\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:461\nmain.main\n\t/src/loki/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598\nerror initialising module: store\ngithub.com/grafana/dskit/modules.(*Manager).initModule\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:138\ngithub.com/grafana/dskit/modules.(*Manager).InitModuleServices\n\t/src/loki/vendor/github.com/grafana/dskit/modules/modules.go:108\ngithub.com/grafana/loki/pkg/loki.(*Loki).Run\n\t/src/loki/pkg/loki/loki.go:461\nmain.main\n\t/src/loki/cmd/loki/main.go:110\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:250\nruntime.goexit\n\t/usr/local/go/src/runtime/asm_amd64.s:1598"
