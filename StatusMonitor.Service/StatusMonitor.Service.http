@@ -1,6 +1,0 @@
-@StatusMonitor.Service_HostAddress = http://localhost:5269
-
-GET {{StatusMonitor.Service_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

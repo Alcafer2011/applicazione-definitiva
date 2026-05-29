@@ -1,6 +1,0 @@
-@Twin.Service_HostAddress = http://localhost:5042
-
-GET {{Twin.Service_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

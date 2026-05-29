@@ -1,6 +1,0 @@
-@DigitalBrain.Service_HostAddress = http://localhost:5163
-
-GET {{DigitalBrain.Service_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
